@@ -1,0 +1,12 @@
+step 1 : start
+step 2 : Declare sum,temp,num
+step 3 : get the armstrong number
+step 4 : initilize sum=0 and temp = num
+step 5 : loop n>=0
+		sum = sum + cubes of last number / (num % 10)cube
+		num = num / 10
+step 6 : if sum == temp
+		armstrong number
+	else 
+		not an armstrong number
+step 7 : stop

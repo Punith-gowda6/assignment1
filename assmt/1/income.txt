@@ -1,0 +1,13 @@
+step 1 : start
+step 2 : Declare Income
+step 3 : Read income
+step 4 : if income <180000
+		print tax is nill
+	 else if income < 300000
+		print (income * 10)/100
+	 else if income <= 500000
+		print (income * 20)/100
+	 else if income <=1000000
+		print (income * 20)/100
+	  
+print 6 : stop

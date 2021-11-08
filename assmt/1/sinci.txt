@@ -1,0 +1,7 @@
+step 1 : start
+step 2 : Declare price,time,rate
+step 3 : calculate SI = (Price * time * rate)/100
+step 4 : print SI
+step 5 : calculate CI = principal(1+rate)^time - principal
+step 6 : print CI
+step 7 : end
