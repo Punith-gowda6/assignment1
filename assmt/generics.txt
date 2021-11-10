@@ -1,0 +1,167 @@
+====================================================
+1.
+====================================================
+package rough;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class Employe {
+
+    private int empId;
+    private String empName;
+
+    public Employe(int empId, String empName) {
+        super();
+        this.empId = empId;
+        this.empName = empName;
+    }
+
+    public final int getEmpId() {
+        return empId;
+    }
+
+     public final void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+     public final String getEmpName() {
+        return empName;
+    }
+
+     public final void setEmpName(String empName) {
+        this.empName = empName;
+    }
+
+     public String toString() {
+        return "Employe [empId=" + empId + ", empName=" + empName + "]";
+    }
+
+    public int hashCode() {
+        return this.empId;
+    }
+
+    public boolean equals(Object obj) {
+        Employe employee = (Employe) obj;
+        if (employee.empId == this.empId) {
+            employee.setEmpName(this.empName);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void main(String[] args) {
+        Set<Employe> employees = new HashSet<>();
+        employees.add(new Employe(1, "Raj"));
+        employees.add(new Employe(1, "Pradeep"));
+        employees.add(new Employe(1, "Kumar"));
+        employees.add(new Employe(2, "Chandan"));
+        employees.add(new Employe(2, "Amitava"));
+
+        System.out.println(employees);
+    }
+}
+
+============================================================================
+2.
+============================================================================
+package rough;
+
+import java.util.HashMap;
+
+class AddElementsToHashMap {
+	public static void main(String args[])
+	{
+		
+		HashMap<Integer, Double> hm1 = new HashMap<>();
+		List <> jh=new ArrayList<>()
+		hm1.put(1, 21.2);
+		hm1.put(2, 22.5);
+		hm1.put(3, 23.6);
+                hm1.put(4, 24.2);
+                hm1.put(5, 25.2);
+                hm1.put(6, 26.2);
+                hm1.put(7, 27.2);
+                hm1.put(8, 28.2);
+                hm1.put(9, 29.2);
+                hm1.put(10,30.2);
+		
+		System.out.println("Mappings of HashMap hm1 are : "+ hm1);
+	}
+}
+
+====================================================================
+3.
+====================================================================
+package rough;
+
+import java.util.Arrays;
+
+public class Swap {
+	    public static void main(String[] args) {
+	        Integer [] a = {"puni", "power"};
+	        System.out.println("Before swap, array: "+Arrays.toString(a));
+
+	        swap(a, 0, 1);      //object, index1, index2
+	        System.out.println(" After swap, array: "+ Arrays.toString(a));
+	    }
+
+	    public static <T> void swap (T[] a, int i, int j) {
+	        T t = a[i];
+	        a[i] = a[j];
+	        a[j] = t;
+	    }
+}
+
+
+==================================================================
+4.
+==================================================================
+// -------main class----
+package rough;
+
+import java.util.Date;
+
+public class GenericMain{
+
+public static void main(String[] args)
+{
+	MyGenericClass2<String,String> myGenericClass22=new MyGenericClass2<String,String>("1","hello");
+	System.out.println(myGenericClass22.getKey()+"\t"+myGenericClass22.getValue());
+	Date a = new java.util.Date();
+	String date = a.toString();
+	MyGenericClass2<String,String> myGenericClass33=new MyGenericClass2<String,String>("Today is : ",date);
+
+System.out.println(myGenericClass33.getKey()+"\t"+myGenericClass33.getValue());
+ 
+ 
+}
+}
+
+//-----2nd class-----
+package rough;
+
+public class MyGenericClass2<k,v>{
+	  private k key;
+	  private v value;
+	  
+	public MyGenericClass2(k key, v value) {
+		super();
+		this.key = key;
+		this.value = value;
+	}
+
+	public k getKey() {
+		return key;
+	}
+
+	public v getValue() {
+		return value;
+	}
+	  
+}
+
+
+==============================
+
