@@ -1,0 +1,265 @@
+==========================================
+1
+==========================================
+
+package work;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import work.Contact.gender;
+
+public class Details {
+
+	public static void main(String[] args) {
+		
+		Long phone1 = Long.valueOf(98765434567L);
+		Contact ct = new Contact("puni","email1r@gmail.com",gender.male);
+		Long phone2 = Long.valueOf(567898765L);
+		Contact ct2 = new Contact("ni","kjqwril1r@gmail.com",gender.female);
+		Long phone3 = Long.valueOf(234567890L);
+		Contact ct3 = new Contact("zuni","ruiwqil1r@gmail.com",gender.male);
+		
+		Map<Long,Contact> dtl = new HashMap<>();
+		dtl.put(phone1, ct);
+		dtl.put(phone2, ct2);
+		dtl.put(phone3, ct3);
+		
+		Set<Entry<Long,Contact>> eset = dtl.entrySet();
+		Iterator<Entry<Long, Contact>> itr = eset.iterator();
+		while(itr.hasNext()) {
+			Entry<Long, Contact> a= itr.next();
+			Long key=a.getKey();
+			Contact value = a.getValue();
+			System.out.println(key+" -- "+value);
+			System.out.println(key);
+			System.out.println(value);
+		}
+		
+	}
+
+}
+--------------------------------
+package work;
+
+public class Contact implements Comparable<Contact>{
+	private String name;
+	private String email;
+	private gender gender;
+	private Long num;
+	
+	public Long getNum() {
+		return num;
+	}
+	public void setNum(Long num) {
+		this.num = num;
+	}
+	public String getName() {
+		return name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public gender getGender() {
+		return gender;
+	}
+
+
+	public Contact(String name, String email, work.Contact.gender gender) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+	}
+
+	enum gender{
+		
+		male,female
+	}
+
+	@Override
+	public String toString() {
+		return "Contact [name=" + name + ", email=" + email + ", gender=" + gender +" "+num+"]";
+	}
+	@Override
+	public int compareTo(Contact o) {
+		
+		return o.getNum().compareTo(this.getNum());
+	}
+}
+
+=================================================
+2
+=================================================
+
+package collection;
+
+import java.util.*;
+public class HashSet3 {
+
+	public static void main(String[] args) {
+	
+		product p1 = new product("abc");
+		product p2 = new product("pqr");
+		product p3 = new product("mno");
+		
+		HashSet<product> h = new HashSet<>();
+		h.add(p1);
+		h.add(p2);
+		h.add(p3);
+		
+		Iterator<product> i = h.iterator();
+		while (i.hasNext())
+			System.out.println(i.next());
+		h.add(p3);
+	
+		}
+}
+
+----------------------------------------
+
+class product
+{
+private String product_name;
+public product(String product_name) {
+super();
+this.product_name = product_name;
+}
+public String getProduct_name() {
+return product_name;
+}
+@Override
+public String toString() {
+return " [product_name = " + product_name + "]";
+}
+}
+
+
+========================================================
+3
+========================================================
+
+package collection;
+import java.util.*;
+
+
+public class Ready {
+	public static void main(String[] args) {
+		
+		TreeSet<Employee> treeSet = new TreeSet<Employee>();
+		
+		Employee emp1 = new Employee(1,"xyz",10,2000.0);
+		Employee emp2 = new Employee(2,"abc",20,4000.0);
+		Employee emp3 = new Employee(1,"uyz",30,6000.0);
+		treeSet.add(emp1);
+		treeSet.add(emp2);
+		treeSet.add(emp3);
+		
+		for(Employee employee : treeSet)
+		{
+			System.out.println("Employee Name:" + employee.getName());
+			System.out.println("Employee Id:" + employee.getId());
+			System.out.println("Employee Age:" + employee.getSalary());
+			System.out.println("Employee Salary:" + employee.getDept());
+			
+		}
+		
+
+	}
+
+}
+
+-----------------------------
+
+package collection;
+
+public class Employee implements Comparable<Object> {
+    private int id;
+    private String name; 
+    private int dept;
+	private double salary;
+	public Employee(int id, String name, int dept, double salary) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.dept = dept;
+		this.salary = salary;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getDept() {
+		return dept;
+	}
+	public void setDept(int dept) {
+		this.dept = dept;
+	}
+	public double getSalary() {
+		return salary;
+	}
+	public void setSalary(double salary) {
+		this.salary = salary;
+	}
+	@Override
+	public int compareTo(Object object) {
+		Employee employee =(Employee) object;
+		return employee.getName().compareTo(this.getName());
+	}
+	
+}	
+
+
+==================================================
+4
+==================================================
+
+package collection;
+
+
+import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
+
+
+public class DateP {
+
+	public static void main(String[] args) {
+	List<LocalDate> ll=new LinkedList<>();
+	ll.add(LocalDate.of(2000,12,23));
+	ll.add(LocalDate.of(2004,02,29));
+	ll.add(LocalDate.of(2001,01,10));
+	ll.add(LocalDate.of(2000,05,28));
+	ll.add(LocalDate.of(2003,04,12));
+	ll.add(LocalDate.of(2005,12,21));
+	ll.add(LocalDate.of(2006,9,30));
+	ll.add(LocalDate.of(2008,06,30));
+	ll.add(LocalDate.of(2009,9,20));
+	ll.add(LocalDate.of(2004,11,8));
+		
+
+	for(LocalDate ld: ll)
+	{
+		if(ld.isLeapYear())
+			{
+			System.out.println("Your date of birth is "+ld+" and it was leap year");
+			}
+		else
+			{
+			System.out.println("Your date of birth is "+ld+" and it was not leap year");
+			}
+	}
+}
+
+}
