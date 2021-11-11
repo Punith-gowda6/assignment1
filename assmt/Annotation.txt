@@ -1,0 +1,143 @@
+================================================
+1
+================================================
+package work;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface test{
+	
+}
+
+
+public class Annotation1 {
+	public static void main(String[] args) {
+		Annotation1 p = new Annotation1();
+		p.MyMethod();
+	}
+	
+	@test
+	public void MyMethod() {
+		System.out.println("non static method");
+	}
+
+}
+
+==============================================================
+2
+==============================================================
+package work;
+
+import java.lang.annotation.Annotation;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface Info{
+	int AuthorId();
+	String Date();
+	String Time();
+	String Vesion();
+	
+}
+
+@Info(AuthorId = 101, Date = "12/11/2021", Time = "10:33", Vesion = "8.0")
+class developer{
+	String Author,Supervisor,Description;
+	
+	public developer(String author, String supervisor, String description) {
+		Author = author;
+		Supervisor = supervisor;
+		Description = description;
+	}
+
+	void developerDetail() {
+		
+		System.out.println("Developer details are : ");
+	}
+	@Override
+	public String toString() {
+		return "developer [Author=" + Author + ", Supervisor=" + Supervisor + ", Description=" + Description + "]";
+	}
+
+	
+}
+
+public class Annotation2 {
+	
+	public static void main(String[] args) {
+		developer dd = new developer("puni", "power", "what ever might be that");
+		Class c = dd.getClass();
+		@SuppressWarnings("unchecked")
+		Annotation an = c.getAnnotation(Info.class);
+		Info i = (Info)an;
+		
+		String ss=dd.toString();
+		
+		dd.developerDetail();
+		System.out.println(ss);
+		System.out.println(i.AuthorId()+" \n"+i.Date()+"\n"+i.Time()+"\n"+i.Vesion());
+		
+	}
+	
+}
+
+===========================================================
+3
+===========================================================
+package work;
+
+import java.lang.annotation.Annotation;
+public class Annotation31 {
+
+	public static void main(String[] args) {
+		
+		Annotation32 dd = new Annotation32();
+		Class<?> c = dd.getClass();
+		Annotation an = c.getAnnotation(Info.class);
+		@SuppressWarnings("unused")
+		Info i = (Info)an;
+	}
+}
+
+class Annotation32 {
+	@Execute(Sequence = 2)
+	public void Method1(){
+		System.out.println("method one");
+	}
+	
+	@Execute(Sequence = 1)
+	public void Method2(){
+		System.out.println("method two");
+	}
+	
+	@Execute(Sequence = 3)
+	public void Method3(){
+		System.out.println("method three");	
+	}
+	
+}
+
+-----------------------------------------------------------
+package work;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface Execute{
+	int Sequence() default 0;
+}
+
+=====================================================================
