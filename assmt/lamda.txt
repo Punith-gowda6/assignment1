@@ -1,0 +1,244 @@
+===========================================================
+1.
+
+interface Arithmetic{
+	int operations(int a,int b);
+}
+public class lambdaExpression1{
+	public static void main(String[] args) {
+		//addition operation
+		Arithmetic addition = (a,b)->(a+b);
+		System.out.println("Addition = "+addition.operations(10, 20));
+		
+		//subtraction operation
+		Arithmetic subtraction = (a , b)->(a - b);
+		System.out.println("Subtraction = "+subtraction.operations(30, 20));
+		
+		//multiplication operation
+		Arithmetic multiplication = ( a, b)->(a * b);
+		System.out.println("multiplication = "+multiplication.operations(10, 20));
+		
+		//division operation
+		Arithmetic division = (a,  b)-> (a / b);
+		System.out.println("division = "+division.operations(10, 2));
+		}
+}
+
+===========================================================
+
+2.package ordersPackage;
+import java.util.Arrays;
+import java.util.List;
+
+public class lambdaexp2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		List<Orders> orders=Arrays.asList(new Orders(3455),new Orders(545666),new Orders(50000));
+				
+	orders.stream().filter(t->t.getPrice()>10000).forEach(t -> System.out.println("order is accepted:"+t));
+	
+	
+	}
+}
+
+3.package Lamda;
+
+import java.util.function.Predicate;
+
+public class MainClass {
+	//functional Interfaces
+    //Predicate ----   boolean result
+	public static void main(String[] args) {
+	 
+		Predicate<String> checkLength=str->str.length()>5;
+		System.out.println(checkLength.test("CheckLength"));
+	}
+
+}
+-----------------------------
+package Lamda;
+
+import java.util.function.Consumer;
+
+class Person{
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+}
+
+public class MainClass2 {
+	
+         //consumer    ------ modifies
+	public static void main(String[] args) {
+		Person p =new Person();
+		Consumer<Person> setName=t->t.setName("xyz");
+		setName.accept(p);
+		System.out.println(p.getName());
+		
+	}
+
+}
+--------------------------------
+package Lamda;
+
+import java.util.function.Function;
+public class MainClass3 {
+ 
+	//function  --both input & output
+	public static void main(String[] args) {
+		Function<Integer,String> getInt=t->t*10+" data multiplied by 10";
+		System.out.println(getInt.apply(2));
+
+	}
+}
+--------------------------
+package Lamda;
+
+import java.util.function.Supplier;
+public class MainClass4 {
+
+	  //supplier  --only output
+	public static void main(String[] args) {
+		Supplier<Double> getRandomDouble=()->Math.random();
+		System.out.println(getRandomDouble .get());
+	}
+
+}
+
+=========================================================
+4.
+package Lambda;
+import java.util.*;
+public class ques4th {
+
+	public static void main(String[] args) {
+		
+      
+		ArrayList<String> a = new ArrayList<>();
+		a.add("king");
+		a.add("jones");
+		a.add("blake");
+		a.add("mark");		
+		System.out.println("Before removing : "+a);
+		a.removeIf(name->(name.length()%2!=0));
+		System.out.println("After removing : "+a);
+		
+	}
+}
+
+===========================================================
+
+5.import java.util.ArrayList;
+import java.util.List;
+
+public class lamda {
+  public static void main(String[] args) {
+	  List<String> names = new ArrayList<>();
+	  names.add("Allen");
+	  names.add("King");
+	  names.add("James");
+	  names.add("Jones");
+	  
+	  StringBuilder result = new StringBuilder();
+	  names.forEach(s->result.append(s.charAt(0)));
+	  System.out.println(result);
+  }
+  
+}
+
+===============================================
+6.-package Lambda;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.function.UnaryOperator;
+
+class Lambda6 implements  UnaryOperator<String>{
+	public String apply(String str) {
+		return str.toUpperCase();
+	}
+}
+
+-----------------------------
+
+public class Lmbda {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		ArrayList<String> uppercase=new ArrayList<>();
+		uppercase.add("bitcoin");
+		uppercase.add("stockmarket");
+		uppercase.add("coinmaster");
+		uppercase.add("master");
+		System.out.println("contents of the list: "+uppercase);
+		uppercase.replaceAll(new Lambda6());
+		System.out.println("contents of the list after replace : "+uppercase);
+	}
+
+}
+---------------------------------
+package Lambda;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.UnaryOperator;
+public class Replaceup {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String arr[]= {"bit coin","stock market","coin master","master"};
+		List<String> arrayList=Arrays.asList(arr);
+		arrayList.replaceAll(e->e.toUpperCase());
+		System.out.println(arrayList);
+		
+	}
+
+}
+
+===============================================================
+
+8.import java.util.ArrayList;
+
+import java.util.List; 
+import java.util.function.Consumer;
+
+public class Lambda_8 {
+
+     public static void main(String[] args){
+
+        Print t=new Print();
+
+        t.start();
+        }
+
+}
+
+class Print extends Thread{
+
+         @Override
+          public void run() {
+               List<Integer> li=new ArrayList<>();
+
+                 li.add(38);
+
+                li.add(24);
+
+                li.add(46);
+
+                li.add(65);
+
+             Consumer<Integer> c=(n)->{ 
+                                          System.out.println(n);
+                 };
+
+    li.forEach(c);
+ }
+}
