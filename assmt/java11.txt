@@ -1,0 +1,176 @@
+======================================
+1
+======================================
+package java11;
+
+
+@FunctionalInterface
+interface simple{
+	public double calculate(double p,float t,float d);
+}
+
+public class SI {
+	public static void main(String[] args) {
+		simple si = (p,t,r)->((p*t*r)/100); 
+		System.out.println("simple intrest is : "+si.calculate(10000, 2, 7.4f));
+
+	}
+	
+	
+}
+
+=======================================
+3
+=======================================
+package java11;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class ListToArray {
+
+	public ListToArray(String string) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static void main(String[] args) {
+		List<ListToArray> li =Arrays.asList(
+				new ListToArray("a"),
+				new ListToArray("quick"),
+				new ListToArray("brown"),
+				new ListToArray("fox"),
+				new ListToArray("jumps"),
+				new ListToArray("over"),
+				new ListToArray("the"),
+				new ListToArray("lazy"),
+				new ListToArray("dog")
+				);
+		
+		String[] arr = new String[li.size()];
+		li.toArray(arr);
+		System.out.println(Arrays.toString(arr));
+	}
+}
+		
+
+========================================
+4
+========================================
+package java11;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FileRead {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		var path= "C:\\Users\\PUNIAY\\Desktop\\assignment\\assmt\\StudentList.txt";
+		
+		String data;
+		try {
+			data =Files.readString(Path.of(path));
+			
+	
+			List list = data.lines().map(s->s.trim())
+			.filter(s->!s.isEmpty())
+			.collect(Collectors.toList());
+			System.out.println(list);
+			
+			int count = (int) list.stream().count();
+			System.out.println(count);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
+		
+	}
+
+}
+
+=============================================
+5
+=============================================
+package java11;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.Scanner;
+
+public class FileAppend {
+	static int i=1,option;
+	
+	public static void main(String[] args) throws IOException {
+		String descision;
+		int total = 0;
+		
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+				
+		
+		var pricepath = "C:\\Users\\PUNIAY\\Desktop\\assignment\\assmt\\price.txt";
+		var totalpath = "C:\\\\Users\\\\PUNIAY\\\\Desktop\\\\assignment\\\\assmt\\\\total.txt";
+		
+		do {
+			System.out.println("Choose an option-> 1 : Insert price 2 : View purchase 3 : Exit");
+			int option = scan.nextInt();
+			
+			if(option == 1) {
+				
+				do {
+					System.out.println("enter the "+i+"th price");
+					int price1 = scan.nextInt();
+					
+					String price = Integer.toString(price1);
+					Files.writeString(Path.of(pricepath), price ,StandardOpenOption.APPEND);
+					total+=price1;
+					Files.writeString(Path.of(totalpath), total+"\n", StandardOpenOption.APPEND);
+
+					i++;
+					System.out.println("do u want to enter more price ?(y/n) : ");
+					descision = scan.next();
+				}while(descision.equalsIgnoreCase("y"));
+			}
+			else if(option == 2) {
+				System.out.println(Files.readString(Path.of(totalpath)));
+			}
+			else if(option == 3)
+				break;
+		}while(option != 3);
+	}
+}
+
+=============================================
+6
+=============================================
+package java11;
+
+import java.io.IOException;
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;public class Assignment6 {
+public static void main(String[] args) throws IOException, InterruptedException
+{
+HttpRequest request = HttpRequest.newBuilder()
+.GET()
+.uri(URI.create("https://httpbin.org/get"))
+.build(); HttpClient httpClient = HttpClient.newBuilder()
+.version(HttpClient.Version.HTTP_1_1)
+.connectTimeout(Duration.ofSeconds(10))
+.build();
+HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString()); // print response headers
+HttpHeaders headers = response.headers();
+headers.map().forEach((k, v) -> System.out.println(k + ":" + v)); // print success code
+System.out.println(response.statusCode()); // print response body
+System.out.println(response.body()); } }
+
